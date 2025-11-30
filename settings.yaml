@@ -1,0 +1,28 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+title: CoreWorxNAS
+background: 
+  image: https://images.unsplash.com/photo-1502790671504-542ad42d5189
+  blur: xl
+  brightness: 50
+cardBlur: xl
+theme: dark
+color: slate
+headerStyle: underlined
+disableCollapse: true
+useEqualHeights: true
+layout:
+  Bookmarks:
+    style: row
+    columns: 3
+    iconsOnly: true
+    header: false
+  Server:
+    style: row
+    columns: 3
+  Media:
+    style: row
+    columns: 3
+

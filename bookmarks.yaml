@@ -1,0 +1,26 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Bookmarks:
+    - Home Assistant:
+        - href: "{{HOMEPAGE_VAR_HASS_IP}}"
+          icon: home-assistant.png
+    - YouTube:
+        - abbr: YT
+          href: https://youtube.com/
+          icon: youtube.png
+    - Github:
+        - abbr: GH
+          href: https://github.com/
+          icon: github.png
+    - Reddit:
+        - abbr: RE
+          href: https://reddit.com/
+          icon: reddit.png
+    - Get Book:                                                                    
+        - icon: calibre-web-automated-book-downloader.png                            
+          href: "{{HOMEPAGE_VAR_TRUENAS_URL}}:8084" 
+    - VS Code:                                                                    
+        - icon: vscode.png                            
+          href: "{{HOMEPAGE_VAR_CODE_SERVER_URL}}"

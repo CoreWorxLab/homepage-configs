@@ -1,0 +1,29 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/info-widgets/
+
+- resources:
+    cpu: true
+    memory: true
+    # cputemp: true
+    # tempmin: 0 # optional, minimum cpu temp
+    # tempmax: 100 # optional, maximum cpu temp
+
+- search:
+    provider: google
+    target: _blank
+
+- datetime:
+    text_size: xl
+    format:
+        dateStyle: short
+        timeStyle: short
+        hour12: true
+
+- openmeteo:
+    latitude: "{{HOMEPAGE_VAR_LAT}}"
+    longitude: "{{HOMEPAGE_VAR_LONG}}"
+    units: metric # or imperial
+    cache: 5 # Time in minutes to cache API responses, to stay within limits
+    format: # optional, Intl.NumberFormat options
+      maximumFractionDigits: 1

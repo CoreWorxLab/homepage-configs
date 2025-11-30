@@ -1,0 +1,108 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+
+- Server:
+    - TrueNAS:
+        icon: truenas.png
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}"
+        widget:
+          type: truenas
+          url: "{{HOMEPAGE_VAR_TRUENAS_IP}}"
+          username: "{{HOMEPAGE_VAR_TRUENAS_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_TRUENAS_PSWD}}"
+          enablePools: true # optional, defaults to false
+          nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+          fields: []
+    - PiHole:
+        icon: pi-hole.png
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}:20720/admin"
+        widget:
+          type: pihole
+          url: "{{HOMEPAGE_VAR_TRUENAS_IP}}:20720"
+          version: 6 # required if running v6 or higher, defaults to 5
+          key: "{{HOMEPAGE_VAR_PIHOLE_KEY}}" # optional, in v6 can be your password or app password
+          fields: ["queries", "blocked", "blocked_percent"]
+    - SABnzbd:                                                                     
+        icon: sabnzbd.png                                                          
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}:8181"
+        widget:                                                                    
+          type: sabnzbd                                                            
+          url: "{{HOMEPAGE_VAR_TRUENAS_IP}}:8181"                                         
+          key: "{{HOMEPAGE_VAR_SABNZBD_KEY}}"
+
+- Media:
+    - Jellyfin:
+        icon: jellyfin.png
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}:8096"
+        widget:
+          type: jellyfin
+          url: "{{HOMEPAGE_VAR_TRUENAS_IP}}:8096"
+          key: "{{HOMEPAGE_VAR_JELLYFIN_KEY}}"
+          enableBlocks: false # optional, defaults to false
+          enableNowPlaying: true # optional, defaults to true
+          enableUser: false # optional, defaults to false
+          enableMediaControl: false # optional, defaults to true
+          showEpisodeNumber: true # optional, defaults to false
+          expandOneStreamToTwoRows: true # optional, defaults to true
+    - Sonarr:
+        icon: sonarr.png                                                                                  
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}:8282"                                                     
+        widget:                                                                                           
+          type: sonarr                                                                                    
+          url: "{{HOMEPAGE_VAR_TRUENAS_IP}}:8282"                                                               
+          key: "{{HOMEPAGE_VAR_SONARR_KEY}}"                                    
+    - Jellyseerr Requests:
+        icon: jellyseerr.png
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}:5055"
+        widget:                                                                                           
+          type: jellyseerr                                                                                
+          url: "{{HOMEPAGE_VAR_TRUENAS_IP}}:5055"                                                               
+          key: "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}"                      
+          fields: ["pending", "approved"]   
+    - Apple TV:
+        icon: apple-tv-plus-light.png
+        widget:
+          type: homeassistant
+          url: "{{HOMEPAGE_VAR_HASS_IP}}:8123"
+          key: "{{HOMEPAGE_VAR_HASS_KEY}}"
+          custom:
+            - state: media_player.appletv
+              label: Now Playing
+              value: "{attributes.app_name} - {attributes.media_title}" 
+    - Radarr:                                                                      
+        icon: radarr.png                                                           
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}:8484"                              
+        widget:                                                                    
+          type: radarr                                                             
+          url: "{{HOMEPAGE_VAR_TRUENAS_IP}}:8484"                                         
+          key: "{{HOMEPAGE_VAR_RADARR_KEY}}"                                
+    - Calibre:                                                                     
+        icon: calibre.png                                                          
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}:8083"                              
+        widget:                                                                    
+          type: calibreweb                                                         
+          url: "{{HOMEPAGE_VAR_TRUENAS_IP}}:8083"                                         
+          username: "{{HOMEPAGE_VAR_CALIBRE_USERNAME}}"                                                          
+          password: "{{HOMEPAGE_VAR_CALIBRE_PSWD}}"   
+          fields: ["books","authors","series"]                                                                                                                        
+
+    - Calendar:
+      - Calendar:
+          icon: google-calendar.png
+          href: https://calendar.google.com/
+          widget:
+            type: calendar
+            firstDayInWeek: sunday # optional - defaults to monday
+            view: monthly # optional - possible values monthly, agenda
+            maxEvents: 10 # optional - defaults to 10
+            showTime: true # optional - show time for event happening today - defaults to false
+            timezone:
+            integrations:
+              - type: ical # Show calendar events from another service
+                url: "{{HOMEPAGE_VAR_GOOGLE_CAL_URL}}" # URL with calendar events
+                name: Event # required - name for these calendar events
+                color: zinc # optional - defaults to pre-defined color for the service (zinc for ical)
+                params: # optional - additional params for the service
+                  showName: true # optional - show name before event title in event line - defaults to false
